@@ -100,7 +100,8 @@ mergeUniformCellsClusters <- function(objCOTAN,
                                       hclustMethod = "ward.D2",
                                       saveObj = TRUE,
                                       outDir = ".",
-                                      minClusters = 0) {
+                                      minClusters = 0, 
+                                      notMergeable = c()) {
   logThis("Merging cells' uniform clustering: START", logLevel = 2L)
 
   outputClusters <- clusters
@@ -123,7 +124,7 @@ mergeUniformCellsClusters <- function(objCOTAN,
     dir.create(mergeOutDir)
   }
 
-  notMergeable <- c()
+  notMergeable <- notMergeable
   iter <- 0L
   repeat {
     iter <- iter + 1L
@@ -220,6 +221,7 @@ mergeUniformCellsClusters <- function(objCOTAN,
       }
     }
 
+    print(notMergeable)
     if (length(unique(outputClusters)) == oldNumClusters) {
       # no merges happened: stop!
       break
