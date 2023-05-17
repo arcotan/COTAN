@@ -45,7 +45,8 @@ mergeUniformCellsClusters(
   distance = "cosine",
   hclustMethod = "ward.D2",
   saveObj = TRUE,
-  outDir = "."
+  outDir = ".",
+  minClusters = 0
 )
 }
 \arguments{
