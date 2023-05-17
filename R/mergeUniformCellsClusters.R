@@ -170,6 +170,12 @@ mergeUniformCellsClusters <- function(objCOTAN,
                    paste(get_nodes_attr(dend, "label", id = id),
                          collapse = " ")), logLevel = 2L)
 
+
+    if (length(unique(outputClusters)) <= minClusters) {
+      # we reached the minimum number of clusters: stop!
+      break
+    }
+
     p <- 1L
     while (p < length(id)) {
       logThis("*", logLevel = 1L, appendLF = FALSE)
@@ -217,10 +223,6 @@ mergeUniformCellsClusters <- function(objCOTAN,
 
     if (length(unique(outputClusters)) == oldNumClusters) {
       # no merges happened: stop!
-      break
-    }
-    if (length(unique(outputClusters)) <= minClusters) {
-      # we reached the minimum number of clusters: stop!
       break
     }
   }
