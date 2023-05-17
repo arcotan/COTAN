@@ -88,7 +88,7 @@ checkClusterUniformity <- function(objCOTAN, cluster, cells,
   top_1_percent_value <- sorted_data$GDI[top_1_percent_index]
 
   # Print the top 1% value
-  logThis(paste0("Top GDI Value: ", top_1_percent_value), logLevel = 2L)
+  logThis(paste0("Top GDI Value: ", top_1_percent_value), logLevel = 1L)
 
 
   if (!clusterIsUniform && saveObj) {
