@@ -75,6 +75,7 @@ checkClusterUniformity <- function(objCOTAN, cluster, cells,
 
   # A cluster is deemed uniform if the number of genes
   # with [GDI > GDIThreshold] is not more than 1%
+  print(mean(GDIData[["GDI"]]))
   clusterIsUniform <- (nrow(GDIData[GDIData[["GDI"]] >= GDIThreshold, ]) <=
                          0.01 * nrow(GDIData))
 
