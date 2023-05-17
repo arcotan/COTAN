@@ -99,7 +99,8 @@ mergeUniformCellsClusters <- function(objCOTAN,
                                       distance = "cosine",
                                       hclustMethod = "ward.D2",
                                       saveObj = TRUE,
-                                      outDir = ".") {
+                                      outDir = ".",
+                                      minClusters = NA) {
   logThis("Merging cells' uniform clustering: START", logLevel = 2L)
 
   outputClusters <- clusters
@@ -216,6 +217,12 @@ mergeUniformCellsClusters <- function(objCOTAN,
     if (length(unique(outputClusters)) == oldNumClusters) {
       # no merges happened: stop!
       break
+    }
+    if (minClusters != NA) {
+      if (length(unique(outputClusters)) <= minClusters) {
+        # we reached the minimum number of clusters: stop!
+        break
+      }
     }
   }
 
