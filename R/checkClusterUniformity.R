@@ -78,6 +78,18 @@ checkClusterUniformity <- function(objCOTAN, cluster, cells,
   clusterIsUniform <- (nrow(GDIData[GDIData[["GDI"]] >= GDIThreshold, ]) <=
                          0.01 * nrow(GDIData))
 
+  # Sort the dataframe by the 'GDI' column in descending order
+  sorted_data <- GDIData[order(-GDIData$GDI), ]
+
+  # Calculate the index for the top 1% value
+  top_1_percent_index <- ceiling(0.01 * nrow(sorted_data))
+
+  # Retrieve the top 1% value of the 'GDI' column
+  top_1_percent_value <- sorted_data$GDI[top_1_percent_index]
+
+  # Print the top 1% value
+  logThis(paste0("Top 1% GDI Value: ", top_1_percent_value), logLevel = 1L)
+
   if (!clusterIsUniform && saveObj) {
     outFile <- file.path(outDir,
                          paste0("non-uniform_cluster_", cluster, ".csv"))
