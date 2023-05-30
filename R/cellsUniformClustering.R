@@ -203,6 +203,8 @@ cellsUniformClustering <- function(objCOTAN,  GDIThreshold = 1.4,
       srat <- objSeurat
     }
 
+    save.file(objSeurat, file.path(outDirIter, "seurat_obj.rds"))
+
     metaData <- objSeurat@meta.data
 
     rm(objSeurat)
